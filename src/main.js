@@ -54,9 +54,9 @@ if (!window.__POWERED_BY_QIANKUN__) {
       onLoad: 'login-required'
     },
     config: {
-      url: 'https://ids.corp.youdao.com/auth',
-      realm: 'sso',
-      clientId: 'cyan-dev'
+      url: config.keycloak.url,
+      realm: config.keycloak.realm,
+      clientId: config.keycloak.clientId
     },
     onReady: (keycloak) => {
       // 用户信息
