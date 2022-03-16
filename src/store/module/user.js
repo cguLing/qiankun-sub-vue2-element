@@ -19,7 +19,6 @@ export default {
     dept2Name: "",
     dept3Name: "",
 
-    right: {superAdmin:['chenjh03','taoyl']},
     token: getToken(),
 
   },

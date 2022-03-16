@@ -16,6 +16,7 @@ const routes =  [
           layout: true,
           title: '首页'
         },
+        component: '/dept/index.vue'
       },
       {
         path: '/dept',

@@ -11,7 +11,6 @@ import {
   localSave,
   localRead
 } from '@/libs/util'
-import routes from '@/router'
 import config from '@/config'
 const { homeName } = config
 
@@ -20,10 +19,11 @@ export default {
     breadCrumbList: [],
     tagNavList: [],
     homeRoute: {},
+    right: {superAdmin:['chenjh03','taoyl']},
     local: localRead('local')
   },
   getters: {
-    menuList: (state, getters, rootState) => getMenuByRouter(routes, rootState.user.access),
+    menuList: (state, getters, rootState) => getMenuByRouter(rootState.user.access),
   },
   mutations: {
     setBreadCrumb (state, route) {

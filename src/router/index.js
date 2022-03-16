@@ -16,6 +16,7 @@ Vue.use(VueRouter)
         item.component === "Main" ? Main : ()=>import(`@/view${item.component}`), 
       children: [],
       name: item.name,
+      redirect: item.redirect,
       meta: {
         title: item.meta.title,
         icon: item.meta.icon,
@@ -33,14 +34,16 @@ Vue.use(VueRouter)
 
 let result = []
 generaRoute(result,routesDefault)
-let user = store.state.user.username
-let right = store.state.user.right
-const routes = result.filter((obj)=>{
-  if(!obj.meta.right) return true
-  for (let i = 0; i < obj.meta.right.length; i++) {
-    const item = obj.meta.right[i];
-    if(right[item].includes(user)) return true
-  }
-  return false
-})
+// 用户权限 => 此为写死的方案
+// let user = store.state.user.username
+// let right = store.state.app.right
+// const routes = result.filter((obj)=>{
+//   if(!obj.meta.right) return true
+//   for (let i = 0; i < obj.meta.right.length; i++) {
+//     const item = obj.meta.right[i];
+//     if(right[item].includes(user)) return true
+//   }
+//   return false
+// })
+const routes = result
 export default routes

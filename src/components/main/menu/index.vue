@@ -1,5 +1,5 @@
 <template>
-    <Menu width="200" ref="systemMenu" accordion :active-name="activeName" :open-names="openNames">
+    <Menu width="180" ref="systemMenu" accordion :active-name="activeName" :open-names="openNames">
         <div class="product-current">
             <div class="item">
                 <Icon :custom="'font_family icon-defaultLogo'"
@@ -9,7 +9,7 @@
                 <slot name="appInfo">-</slot>
             </div>
         </div>
-        <MenuChild :menuList="menuLists" :level="0"></MenuChild>
+        <MenuChild :menuList="menuLists" :level="0" :collapsed="collapsed"></MenuChild>
     </Menu>
 </template>
 
@@ -18,6 +18,12 @@ import MenuChild from './children'
 
 export default {
   components: { MenuChild },
+  props:{
+    collapsed:{
+      type: Boolean,
+      required: true
+    }
+  },
   provide () {
     return {
       selectToRouterMain: this.selectToRouterMain
@@ -36,14 +42,41 @@ export default {
       return this.$store.getters.menuList
     },
   },
-  watch: {
-  },
   created(){
     this.sysGetMenus()
   },
+  watch: {
+    '$route' () {
+      this.expandSideMenu()
+    },
+    collapsed:{
+      handler(val){
+        if(val){
+          this.openNames = []
+        } else {
+          let tmp = this.$route.path.split('/')
+          if(tmp.length>2){//TODO: 要求path与name 强相关 可能出现问题
+            for (let i = 1; i < tmp.length-1; i++) {
+              const item = tmp[i]
+              this.openNames.push(item)
+            }
+          }else {
+            this.openNames.push('')
+          }
+          this.openNames.push(this.$route.name)
+        }
+        this.$nextTick(()=> {
+          this.$refs.systemMenu.updateOpened()
+          this.$refs.systemMenu.updateActiveName()
+        });
+      },
+      deep:true,
+      immediate: true,
+    }
+  },
   methods: {
     sysGetMenus () {
-      let result = this.getMenuName(this.menuList, 0)
+      let result = this.getMenuName(this.menuList,0)
       this.menuNames = result.Name
       this.menuLists = result.Menu
       this.expandSideMenu()
@@ -90,18 +123,19 @@ export default {
         if (this.menuNames.includes(names[i])) {
           this.activeName = names[i]
           break
-        } else this.activeName = ''
+        } else {
+          this.activeName = ''
+          //设定首页展开IDC的子级菜单
+          // if(this.openNames.includes('home')){
+          //   this.openNames.push('idc')
+          // }
+        }
       }
       this.$nextTick(() => {
         const _systemMenu = this.$refs.systemMenu
         _systemMenu.updateOpened()
         _systemMenu.updateActiveName()
       })
-    }
-  },
-  watch: {
-    '$route' () {
-      this.expandSideMenu()
     }
   }
 }

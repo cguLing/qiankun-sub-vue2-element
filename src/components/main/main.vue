@@ -6,8 +6,8 @@
         ref="siderProductBar"
         v-model="collapsed"
         collapsible
-        :collapsed-width="50"
-        :width="200"
+        :collapsed-width="45"
+        :width="180"
       >
         <div class="menu-bar" style="height: calc(100% - 100px);">
           <MenuBar ref="sysMenu">

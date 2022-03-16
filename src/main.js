@@ -41,12 +41,6 @@ if (!window.__POWERED_BY_QIANKUN__) {
     mode: 'history',
     routes
   })
-  // instance = new Vue({
-  //   el: '#subContainer',
-  //   router,
-  //   store,
-  //   render: (h) => h(App)
-  // })
   Vue.use(keycloak , {
     init: {
       //是否定时校验登录状态，如果chrome版本大于86.x，请改为false。否则将导致浏览器重复刷新
