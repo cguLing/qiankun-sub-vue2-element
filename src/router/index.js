@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Main from '@/components/main'
-import store from '@/store'
+import Layout from '@/components/layout'
 import routesDefault from './routes'
 Vue.use(VueRouter)
 /**
@@ -13,7 +12,7 @@ Vue.use(VueRouter)
     const menu = {
       path: item.path,
       component:
-        item.component === "Main" ? Main : ()=>import(`@/view${item.component}`), 
+        item.component === "Main" ? Layout : ()=>import(`@/view${item.component}`), 
       children: [],
       name: item.name,
       redirect: item.redirect,

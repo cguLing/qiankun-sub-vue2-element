@@ -1,5 +1,8 @@
 <template>
-  <Row class="back">
+<div>
+  404
+</div>
+  <!-- <Row class="back">
     <Col span="13" style="height:100%">
       <Row type="flex" justify="end" style="position: relative;top:15%">
         <Col span="12">
@@ -22,7 +25,7 @@
         <Button type="primary" shape="circle" to="/">返回首页</Button>
       </div>
     </Col>
-  </Row>
+  </Row> -->
 </template>
 
 <script>

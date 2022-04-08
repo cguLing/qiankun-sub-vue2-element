@@ -23,7 +23,7 @@ const routes =  [
         name: 'dept',
         meta: {
           hideInMenu: false,
-          icon: 'logo-windows',
+          icon: 'tree-table',
           title: '业务部门负责人'
         },
         component: '/dept/index.vue'
@@ -41,7 +41,7 @@ const routes =  [
         path: '/project',
         name: 'project',
         meta: {
-          icon: 'ios-navigate',
+          icon: 'tree-table',
           title: '项目组'
         },
         component: '/project/index.vue'
@@ -52,7 +52,7 @@ const routes =  [
     path: '/myConnect',
     name: 'myConnect',
     meta: {
-      icon: 'ios-bookmarks',
+      icon: 'tree-table',
       title: '我的服务'
     },
     component: 'Main',
@@ -61,6 +61,7 @@ const routes =  [
         path: '/myConnect/IDC',
         name: 'myConnect_IDC',
         meta: {
+          icon: 'tree-table',
           title: '服务1'
         },
         component: '/service/index.vue'
@@ -69,6 +70,7 @@ const routes =  [
         path: '/myConnect/IT',
         name: 'myConnect_IT',
         meta: {
+          icon: 'tree-table',
           title: '服务2'
         },
         component: '/service/index.vue'
@@ -79,7 +81,7 @@ const routes =  [
     path: 'https://www.baidu.com/',
     name: 'doc',
     meta: {
-      icon: 'ios-navigate',
+      icon: 'tree-table',
       title: '操作文档',
       target: 'link'
     }
@@ -88,6 +90,7 @@ const routes =  [
     path: '/404',
     meta: {
       layout: true,
+      hideInMenu: true,
     },
     component: '/error/404/index.vue'
   },
@@ -97,6 +100,7 @@ const routes =  [
     redirect: '/404',
     meta: {
       layout: true,
+      hideInMenu: true,
     }
   }
 ]

@@ -1,5 +1,5 @@
 <template>
-  <div id="subContainer" style="height:100%">
+  <div id="subContainer">
     <router-view/>
   </div>
 </template>
@@ -21,7 +21,7 @@ html,body{
   margin: 0;
   padding: 0;
 }
-#subContainer {
-  .size;
-}
+// #subContainer {
+//   .size;
+// }
 </style>

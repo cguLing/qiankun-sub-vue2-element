@@ -4,4 +4,5 @@ src/router/*
 src/modules/*
 src/i18n/*
 src/assets/*
+src/node_modules/*
 src/*
