@@ -1,5 +1,5 @@
 <template>
-  <div v-if="!item.hideInMenu" :style="sidebar.opened?'width:180px':''">
+  <div v-if="!item.hideInMenu" :style="sidebar.opened?'width:180px':'height:42px'">
     <template v-if="hasOneShowingChild(item.children,item) && (!onlyOneChild.children||onlyOneChild.noShowingChildren)&&!item.alwaysShow">
       <app-link v-if="onlyOneChild.meta" :to="resolvePath(onlyOneChild.path)">
         <el-menu-item :index="resolvePath(onlyOneChild.path)" :class="{'submenu-title-noDropdown':!isNest}">

@@ -1,6 +1,6 @@
 <template>
   <div class="navbar">
-    <hamburger :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" />
+    <!-- <hamburger :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" /> -->
 
     <breadcrumb class="breadcrumb-container" />
 
@@ -23,7 +23,7 @@
 <script>
 import { mapGetters, mapState } from 'vuex'
 import Breadcrumb from '@/components/Breadcrumb'
-import Hamburger from '@/components/Hamburger'
+// import Hamburger from '@/components/Hamburger'
 
 export default {
   data() {
@@ -45,7 +45,7 @@ export default {
   },
   components: {
     Breadcrumb,
-    Hamburger
+    // Hamburger
   },
   created() {
     document.title = this.docTitle
@@ -63,9 +63,9 @@ export default {
     ])
   },
   methods: {
-    toggleSideBar() {
-      this.$store.dispatch('toggleSideBar')
-    },
+    // toggleSideBar() {
+    //   this.$store.dispatch('toggleSideBar')
+    // },
     setDialogWidth() {
       const clientWith = document.body.clientWidth
       if (clientWith < 600) {
@@ -103,18 +103,18 @@ export default {
     position: relative;
     background: rgb(245, 247, 249);//#fff;
     transition: left 0.25s;
-    .hamburger-container {
-        line-height: 46px;
-        height: 100%;
-        float: left;
-        cursor: pointer;
-        transition: background .3s;
-        -webkit-tap-highlight-color:transparent;
+    // .hamburger-container {
+    //     line-height: 46px;
+    //     height: 100%;
+    //     float: left;
+    //     cursor: pointer;
+    //     transition: background .3s;
+    //     -webkit-tap-highlight-color:transparent;
 
-        &:hover {
-            background: rgba(0, 0, 0, .025)
-        }
-    }
+    //     &:hover {
+    //         background: rgba(0, 0, 0, .025)
+    //     }
+    // }
 
     .breadcrumb-container {
         float: left;

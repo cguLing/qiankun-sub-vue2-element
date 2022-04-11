@@ -217,7 +217,7 @@ export default {
       margin-left: 5px;
       margin-top: 4px;
       &:first-of-type {
-        margin-left: 10px;
+        margin-left: 0px;
       }
       &:last-of-type {
         margin-right: 10px;

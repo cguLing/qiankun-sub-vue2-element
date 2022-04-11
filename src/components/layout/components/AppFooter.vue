@@ -1,12 +1,12 @@
 <template>
   <footer class="app-footer">
-    <div class="copyright">
+    <!-- <div class="copyright">
       Copyright ©2021 {{logo}}运维
       All Rights Reserved | {{ copyright.version }} |
       <el-link type="primary" :href="copyright.manual" target="_blank" style="font-size: inherit">
         使用文档
       </el-link>
-    </div>
+    </div> -->
   </footer>
 </template>
 

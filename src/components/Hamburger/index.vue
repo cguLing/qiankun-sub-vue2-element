@@ -1,8 +1,8 @@
 <template>
-  <div style="padding: 0 15px;" @click="toggleClick">
+  <div class="hamburger" @click="toggleClick">
     <svg
       :class="{'is-active':isActive}"
-      class="hamburger"
+      class="hamburger-svg"
       viewBox="0 0 1024 1024"
       xmlns="http://www.w3.org/2000/svg"
       width="64"
@@ -31,14 +31,24 @@ export default {
 </script>
 
 <style scoped>
-.hamburger {
+.hamburger{
+  /* background: rgb(245, 247, 249);
+  color: rgb(81, 90, 110);
+  box-shadow: rgb(100 100 100 / 20%) -1px 0px 0px 1px;
+  z-index: 1; */
+  padding: 0 15px;
+  /* height:40px;
+  text-align:center;
+  line-height:40px; */
+}
+.hamburger-svg {
   display: inline-block;
   vertical-align: middle;
   width: 20px;
   height: 20px;
 }
 
-.hamburger.is-active {
+.hamburger-svg.is-active {
   transform: rotate(180deg);
 }
 </style>

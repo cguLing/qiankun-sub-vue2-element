@@ -15,6 +15,9 @@
         <sidebar-item v-for="route in routes" :key="route.path" :item="route" :base-path="route.path" />
       </el-menu>
     </el-scrollbar>
+    <!-- <div class="try"> -->
+    <hamburger :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" />
+    <!-- </div> -->
   </div>
 </template>
 
@@ -22,10 +25,11 @@
 import { mapGetters } from 'vuex'
 import Logo from './Logo'
 import SidebarItem from './SidebarItem'
+import Hamburger from '@/components/Hamburger'
 import variables from '@/styles/variables.scss'
 
 export default {
-  components: { SidebarItem, Logo },
+  components: { SidebarItem, Logo, Hamburger },
   computed: {
     ...mapGetters([
       'sidebar'
@@ -52,6 +56,30 @@ export default {
     isCollapse() {
       return !this.sidebar.opened
     }
+  },
+  methods:{
+    toggleSideBar() {
+      this.$store.dispatch('toggleSideBar')
+    },
   }
 }
 </script>
+<style lang="scss" scoped>
+  .hamburger-container {
+    background: rgb(245, 247, 249);
+    box-shadow: rgb(100 100 100 / 20%) -1px 0px 0px 1px;
+    height: 40px;
+    line-height: 40px;
+    position: relative;
+    text-align:center;
+    height: 100%;
+    // float: left;
+    cursor: pointer;
+    transition: background .3s;
+    -webkit-tap-highlight-color:transparent;
+
+      &:hover {
+          background: rgba(0, 0, 0, .055)
+      }
+  }
+</style>
