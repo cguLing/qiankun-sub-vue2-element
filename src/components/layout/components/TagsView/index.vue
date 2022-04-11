@@ -13,7 +13,7 @@
         @contextmenu.prevent.native="openMenu(tag,$event)"
       >
         {{ tag.title }}
-        <span v-if="$route.path=='/home'" class="space"></span>
+        <span v-if="isActive(tag)&&$route.path=='/home'" class="space"></span>
         <span
           v-else-if="!isAffix(tag)"
           :class="isActive(tag)?'el-icon-close':'dispalynone'"

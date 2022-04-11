@@ -1,8 +1,34 @@
-src/components/common/resource/fonts/*
-src/service/*
-src/router/*
-src/modules/*
-src/i18n/*
-src/assets/*
-src/node_modules/*
-src/*
+# src/components/common/resource/fonts/*
+# src/service/*
+# src/router/*
+# src/modules/*
+# src/i18n/*
+# src/assets/*
+# src/node_modules/*
+# src/*
+
+.DS_Store
+node_modules
+/dist
+/dist-xiaochu
+local env files
+.env.local
+.env.*.local
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.metals/
+yarn.lock
+package-lock.json
