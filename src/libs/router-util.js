@@ -5,9 +5,7 @@
  */
 import store from '@/store'
 import { getToken, localSave, localRead } from '@/libs/util'
-// import config from '@/config'
 import { lazyLoadingCop } from '@/libs/tools'
-// import { getMockMenuData } from '@/api/data'
 import Main from '@/components/main' // Main 是架构组件，不在后台返回，在文件里单独引入
 
 var gotRouter

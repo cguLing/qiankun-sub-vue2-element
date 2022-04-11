@@ -13,7 +13,11 @@
         @contextmenu.prevent.native="openMenu(tag,$event)"
       >
         {{ tag.title }}
-        <span v-if="!isAffix(tag)" :class="isActive(tag)?'el-icon-close':'dispalynone'" @click.prevent.stop="closeSelectedTag(tag)" />
+        <span v-if="$route.path=='/home'" class="space"></span>
+        <span
+          v-else-if="!isAffix(tag)"
+          :class="isActive(tag)?'el-icon-close':'dispalynone'"
+          @click.prevent.stop="closeSelectedTag(tag)" />
       </router-link>
     </scroll-pane>
     <!-- <ul v-show="visible" :style="{left:left+'px',top:top+'px'}" class="contextmenu">
@@ -287,6 +291,9 @@ export default {
         // background-color: #eeeeee;
         color: rgb(50, 50, 50);
       }
+    }
+    .space{
+      margin-right: 16px;
     }
     .dispalynone{
       display: none;
