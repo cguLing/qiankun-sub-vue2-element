@@ -3,11 +3,11 @@
     <transition name="sidebarLogoFade">
       <router-link v-if="collapse" key="collapse" class="sidebar-logo-link" to="/">
         <img v-if="sysInfo.logo" :src="sysInfo.logo" class="sidebar-logo">
-        <h1 v-else class="sidebar-title">{{ sysInfo.name }} </h1>
+        <h1 v-else class="sidebar-title">{{ $sysMainFrameInfo.APP_NAME }} </h1>
       </router-link>
       <router-link v-else key="expand" class="sidebar-logo-link" to="/">
         <img v-if="sysInfo.logo" :src="sysInfo.logo" class="sidebar-logo">
-        <h1 class="sidebar-title">{{ sysInfo.name }} </h1>
+        <h1 class="sidebar-title">{{ $sysMainFrameInfo.APP_NAME }} </h1>
       </router-link>
     </transition>
   </div>
@@ -30,8 +30,8 @@ export default {
   data() {
     return {
       sysInfo: {
-        name: '有道运维周报',
-        logo: require('@/assets/matrix-logo.png'),
+        name: '子系统模板',
+        logo: require('@/assets/logo.svg'),
       }
     }
   }
