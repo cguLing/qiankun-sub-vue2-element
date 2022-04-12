@@ -73,6 +73,7 @@ export default {
   position: absolute;//relative;
   overflow: hidden;
   width: 100%;
+  height: 100%;
   ::v-deep .el-scrollbar__wrap {
     margin-bottom: -16px !important;
   }
