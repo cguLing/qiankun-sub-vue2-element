@@ -20,17 +20,6 @@
         </el-footer>
       </el-container>
     </el-container>
-    <!-- <sidebar class="sidebar-container"/>
-    <div :class="{ hasTagsView: needTagsView }" class="main-container">
-      <div :class="{ 'fixed-header': fixedHeader }">
-        <navbar />
-        <tags-view v-if="needTagsView" />
-      </div>
-      <app-main />
-      <div :class="{ 'fixed-footer': fixedFooter }">
-        <app-footer />
-      </div>
-    </div> -->
   </div>
 </template>
 
