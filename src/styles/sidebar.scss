@@ -78,16 +78,18 @@
 }
 
   .sidebar-container {
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 5px 0px;
     transition: width 0.28s;
     width: $sideBarWidth !important;
     background-color: $menuBg;
     height: 100%;
-    position: fixed;
+    position: relative;
     font-size: 11px;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 1001;
+    display:block;
+    // top: 0;
+    // bottom: 0;
+    // left: 0;
+    z-index: 1;
     overflow: hidden;
 
     // reset element-ui css
@@ -97,6 +99,7 @@
 
     .scrollbar-wrapper {
       overflow-x: hidden !important;
+      background-color: rgb(245, 247, 249);
     }
 
     .el-scrollbar__bar.is-vertical {
@@ -109,7 +112,7 @@
 
     &.has-logo {
       .el-scrollbar {
-        height: calc(100% - 130px);
+        height: calc(100% - 90px);
       }
     }
 
@@ -143,33 +146,35 @@
     .submenu-title-noDropdown,
     .el-submenu__title {
       &:hover {
-        background-color: $menuHover !important;
+        color: $menuActiveText !important;
+        background-color: #fff !important;
       }
     }
 
-    .is-active>.el-submenu__title {
-      color: $subMenuActiveText !important;
-      background-color: $subMenuHover !important;
+    .is-active:hover {
+      color: #fff !important;
+      background-color: $menuHover !important;
     }
 
     & .nest-menu .el-submenu>.el-submenu__title,
     & .el-submenu .el-menu-item {
       min-width: $sideBarWidth !important;
       // background-color: $subMenuBg !important;
-
       &:hover {
-        background-color: $subMenuHover !important;
+        // background-color: $subMenuHover !important;
+        color: $menuActiveText !important;
+        background-color: #fff !important;
       }
     }
   }
 
   .hideSidebar {
     .sidebar-container {
-      width: 54px !important;
+      width: 45px !important;
     }
 
     .main-container {
-      margin-left: 54px;
+      margin-left: 45px;
     }
 
     .submenu-title-noDropdown {
@@ -227,6 +232,7 @@
     }
 
     .sidebar-container {
+      box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 5px 0px;
       transition: transform .28s;
       width: $sideBarWidth !important;
     }
@@ -267,7 +273,8 @@
     padding: 0 45px;
     &:hover {
       // you can use $subMenuHover
-      background-color: $menuHover !important;
+      color: $menuActiveText !important;
+      background-color: #fff !important;
     }
   }
 

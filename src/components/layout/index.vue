@@ -1,21 +1,25 @@
 <template>
   <div :class="classObj" class="app-wrapper">
-    <div
+    <!-- <div
       v-if="device === 'mobile' && sidebar.opened"
       class="drawer-bg"
       @click="handleClickOutside"
-    />
-    <sidebar class="sidebar-container"/>
-    <div :class="{ hasTagsView: needTagsView }" class="main-container">
-      <div :class="{ 'fixed-header': fixedHeader }">
-        <navbar />
-        <tags-view v-if="needTagsView" />
-      </div>
-      <app-main />
-      <div :class="{ 'fixed-footer': fixedFooter }">
-        <app-footer />
-      </div>
-    </div>
+    /> -->
+    <el-container style="height:100%">
+      <sidebar />
+      <el-container>
+        <el-header style="padding:0;height:auto">
+          <navbar />
+          <tags-view v-if="needTagsView" />
+        </el-header>
+        <el-main style="background:#fff">
+          <app-main />
+        </el-main>
+        <el-footer style="padding:0;height:auto">
+          <app-footer />
+        </el-footer>
+      </el-container>
+    </el-container>
   </div>
 </template>
 

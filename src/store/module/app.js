@@ -22,14 +22,10 @@ export default {
         : true,
       withoutAnimation: false
     },
-    mod: sessionStorage.getItem("mod") || "运维平台",
     device: "desktop",
-    size: sessionStorage.getItem("size") || "medium",
-
     // breadCrumbList: [],
     tagNavList: [],
     homeRoute: {},
-    right: {superAdmin:['chenjh03','taoyl']},
     local: localRead('local')
   },
   getters: {
@@ -52,14 +48,6 @@ export default {
     },
     TOGGLE_DEVICE: (state, device) => {
       state.device = device;
-    },
-    SET_SIZE: (state, size) => {
-      state.size = size;
-      sessionStorage.setItem("size", size);
-    },
-    SET_MOD: (state, mod) => {
-      state.mod = mod;
-      sessionStorage.setItem("mod", mod);
     },
     // setBreadCrumb (state, route) {
     //   state.breadCrumbList = getBreadCrumbList(route, state.homeRoute)
@@ -112,12 +100,6 @@ export default {
     },
     toggleDevice({ commit }, device) {
       commit("TOGGLE_DEVICE", device);
-    },
-    setSize({ commit }, size) {
-      commit("SET_SIZE", size);
-    },
-    setMod({ commit }, mod) {
-      commit("SET_MOD", mod);
     },
   }
 }

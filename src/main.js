@@ -25,7 +25,7 @@ import {
 // 加载系统配置
 let sysMainframeInfo = {};
 Vue.prototype.$sysMainFrameInfo = Object.assign({
-  APP_NAME: '子系统模板',
+  APP_NAME: config.title,
   TAB_ON: true
 }, sysMainframeInfo)
 /* eslint-disable */
