@@ -45,6 +45,7 @@ if (!window.__POWERED_BY_QIANKUN__) {
     mode: 'history',
     routes
   })
+  const sso = process.env.NODE_ENV == 'production'?config.prod_keycloak:config.dev_keycloak
   Vue.use(keycloak , {
     init: {
       //是否定时校验登录状态，如果chrome版本大于86.x，请改为false。否则将导致浏览器重复刷新
@@ -52,9 +53,9 @@ if (!window.__POWERED_BY_QIANKUN__) {
       onLoad: 'login-required'
     },
     config: {
-      url: config.keycloak.url,
-      realm: config.keycloak.realm,
-      clientId: config.keycloak.clientId
+      url: sso.url,
+      realm: sso.realm,
+      clientId: sso.clientId
     },
     onReady: (keycloak) => {
       // 用户信息

@@ -23,7 +23,12 @@ export default {
   /**
    * @description sso 认证
    */
-  keycloak: {
+  prod_keycloak: {
+    url: 'https://ids.corp.youdao.com/auth',
+    realm: 'sso',
+    clientId: 'rainbow-bridge.corp.youdao.com'
+  },
+  dev_keycloak: {
     url: 'https://ids.corp.youdao.com/auth',
     realm: 'sso',
     clientId: 'vpn-login.site.youdao.com'
