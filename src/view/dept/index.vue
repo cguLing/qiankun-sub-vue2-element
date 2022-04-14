@@ -9,14 +9,22 @@
       @handleSearch="handleSearch"
       @handleTable="handleTable"
       @handleAction="handleAction" />
+    <my-modal
+        :openModal.sync="modalOpen"
+        :modalForm="modalForm"
+        :title="modalTitle"
+        :actionButton="actionButton"
+        @handleAction="handleModalAction"/>
   </el-card>
 </template>
 
 <script>
+import MyModal from './components/myModal.vue'
 import CommonTable from "@/components/Table/commonTable"
 export default {
   components:{
-    CommonTable
+    CommonTable,
+    MyModal
   },
   data() {
     return {
@@ -113,6 +121,12 @@ export default {
       ],
       tableData: [{title:'xxx',area:'yyy',idc:false}],
       tableLoading: false,
+      modalOpen: false,
+      modalTitle: '新增IP池',
+      modalForm: {
+        title:'',
+      },
+      actionButton:[],
     }
   },
   mounted() {
@@ -142,25 +156,19 @@ export default {
     handleTable(key){
       switch (key) {
         case 'add':
-          
+          this.modalForm = {
+            title:''
+          }
+          this.modalTitle='新增IP池'
+          this.actionButton = [
+          {name:'取消',type:'default',icon:'', style:'',key:'cancel'},
+          {name:'确定',type:'primary',icon:'', style:'',key:'addConfirm'}]
+          this.modalOpen = true
           break;
       
         default:
           break;
       }
-      // this.modalForm = {
-      //   title:'',
-      //   idc: false,
-      //   it: false,
-      //   area: '',
-      //   ext_opt: '',
-      //   desc: ''
-      // }
-      // this.modalTitle='新增IP池'
-      // this.actionButton = [
-      // {name:'取消',type:'default',icon:'', style:'',click:'cancel'},
-      // {name:'确定',type:'primary',icon:'', style:'',click:'addConfirm'}]
-      // this.modalOpen = true
     },
     handleAction(row, type){
       switch (type) {
@@ -168,8 +176,8 @@ export default {
           // this.modalTitle='修改IP池'
           // this.modalForm = row
           // this.actionButton = [
-          // {name:'取消',type:'default',icon:'', style:'',click:'cancel'},
-          // {name:'确定',type:'primary',icon:'', style:'',click:'changeConfirm'}]
+          // {name:'取消',type:'default',icon:'', style:'',key:'cancel'},
+          // {name:'确定',type:'primary',icon:'', style:'',key:'changeConfirm'}]
           // this.modalOpen = true
           break;
             
@@ -180,6 +188,30 @@ export default {
           // })
           break;
     
+        default:
+          break;
+        }
+    },
+    handleModalAction(type, form){
+      switch (type) {
+        case 'addConfirm':
+          // ipPoolPost(form).then((res)=>{}).then(()=>{
+          //   this.$Message.success('添加成功！');
+          //   this.handleSearch()
+          // }).catch((err)=>{
+          //   this.$Message.error('添加失败：'+err);
+          // })
+          this.modalOpen = false
+          break;
+
+        case 'changeConfirm':
+          // ipPoolPut(form).then((res)=>{}).then(()=>{
+          //   this.$Message.success('修改成功！');
+          //   this.handleSearch()
+          // })
+          this.modalOpen = false
+          break;
+
         default:
           break;
         }
