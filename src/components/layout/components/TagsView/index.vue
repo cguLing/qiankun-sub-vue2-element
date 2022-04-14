@@ -11,12 +11,14 @@
         class="tags-view-item"
         @click.middle.native="!isAffix(tag)?closeSelectedTag(tag):''"
         @contextmenu.prevent.native="openMenu(tag,$event)"
+        @mouseover.native="handleMouseOn(tag.path)"
+        @mouseout.native="handleMouseOff"
       >
         {{ tag.title }}
         <span v-if="isActive(tag)&&$route.path=='/home'" class="space"></span>
         <span
           v-else-if="!isAffix(tag)"
-          :class="isActive(tag)?'el-icon-close':'dispalynone'"
+          :class="(isActive(tag)||tag.path==showClose)?'el-icon-close':'dispalynone'"
           @click.prevent.stop="closeSelectedTag(tag)" />
       </router-link>
     </scroll-pane>
@@ -41,7 +43,8 @@ export default {
       top: 0,
       left: 0,
       selectedTag: {},
-      affixTags: []
+      affixTags: [],
+      showClose: ''
     }
   },
   computed: {
@@ -70,6 +73,12 @@ export default {
     this.addTags()
   },
   methods: {
+    handleMouseOn(path){
+      this.showClose=path
+    },
+    handleMouseOff(){
+      this.showClose=''
+    },
     isActive(route) {
       return route.path === this.$route.path
     },

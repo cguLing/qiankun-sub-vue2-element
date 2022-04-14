@@ -16,7 +16,7 @@ const routes =  [
           layout: true,
           title: '首页'
         },
-        component: '/dept/index.vue'
+        component: '/home/index.vue'
       },
       {
         path: '/dept',
@@ -24,7 +24,7 @@ const routes =  [
         meta: {
           hideInMenu: false,
           icon: 'tree-table',
-          title: '业务部门负责人'
+          title: '部门管理'
         },
         component: '/dept/index.vue'
       }
