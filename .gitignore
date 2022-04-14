@@ -22,6 +22,10 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw*
+<<<<<<< HEAD
 yarn.lock
+=======
+*.lock
+>>>>>>> 3754cef19a29e5c3923cdff9da552d8dd9a514e8
 
 build/env.js
