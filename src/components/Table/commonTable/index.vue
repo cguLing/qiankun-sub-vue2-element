@@ -1,12 +1,49 @@
 <template>
   <div>
-    <el-row type="flex" justify="end">
-      <el-form ref="searchForm" :model="searchForm" inline>
-        <el-form-item prop="keyword" v-if="searchForm.hasOwnProperty('keyword')">
-          <el-input 
-            prefix-icon="el-icon-search" style="width:300px" v-model="searchForm.keyword" :placeholder="searchPlace" />
+    <el-row v-if="!$slots.default" :type="searchFormConf.rowType" :justify="searchFormConf.rowJustify">
+      <el-form ref="searchForm" :model="searchForm" inline :label-width="searchFormConf.labelWidth">
+        <el-form-item
+          v-for="item in Object.keys(searchForm)" :key="item"
+          :prop="item+'.value'"
+          :label="searchForm[item].label">
+          <el-input
+            v-if="searchForm[item].type=='input'"
+            :prefix-icon="searchForm[item].prefixIcon"
+            :suffix-icon="searchForm[item].suffixIcon"
+            :style="searchForm[item].style"
+            v-model="searchForm[item].value"
+            :placeholder="searchForm[item].placeholder" />
+          <el-input
+            v-if="searchForm[item].type=='select_input'"
+            :prefix-icon="searchForm[item].prefixIcon"
+            :suffix-icon="searchForm[item].suffixIcon"
+            :style="searchForm[item].style"
+            v-model="searchForm[item].value"
+            :placeholder="searchForm[item].placeholder"
+            class="input-with-select">
+            <el-select
+              v-model="searchForm[item].select"
+              slot="prepend"
+              :placeholder="searchForm[item].selectPlaceholder">
+              <el-option v-for="obj in searchForm[item].selectOption" :key="obj.value" :label="obj.label" :value="obj.value"></el-option>
+            </el-select>
+          </el-input>
+          <el-select
+            v-if="searchForm[item].type=='select'"
+            :style="searchForm[item].style"
+            v-model="searchForm[item].value"
+            :placeholder="searchForm[item].placeholder"
+            :clearable="searchForm[item].clearable"
+            :filterable="searchForm[item].filterable">
+            <el-option
+              v-for="obj in searchForm[item].selectOption"
+              :key="obj.value"
+              :label="obj.label"
+              :value="obj.value">
+            </el-option>
+          </el-select>
         </el-form-item>
-        <el-form-item v-if="searchForm.hasOwnProperty('keyword')">
+        <el-form-item v-if="JSON.stringify(searchForm) != '{}'">
           <el-button
             v-for="item in searchButton"
             :key="item.key"
@@ -18,7 +55,8 @@
         </el-form-item>
       </el-form>
     </el-row>
-    <el-row :style="Object.keys(searchForm).length==0?'margin-bottom:10px':'margin:-25px 0 10px 0'">
+    <slot></slot>
+    <el-row :style="Object.keys(searchForm).length==0?'margin-bottom:10px':'margin:0px 0 10px 0'">
       <el-button
         v-for="item in tableButton"
         :key="item.key"
@@ -30,16 +68,28 @@
     </el-row>
     <el-row>
       <el-table
+        ref="table"
         :data="tableData"
         :header-cell-style="{background:'#f8f8f9',padding:'8px'}"
         :border="tableParams.border"
         :stripe="tableParams.stripe"
-        v-loading = "tableLoading">
-        <el-table-column
-            v-for="item in tableCols"
+        v-loading = "tableLoading"
+        @selection-change="handleSelectionChange">
+        <template
+            v-for="item in tableCols">
+          <el-table-column
+            v-if="item.type=='selection'"
+            :type="item.type"
             :key="item.key"
             :align="item.align||'center'"
-            :min-width="item.width||'135'"
+            :width="item.width">
+          </el-table-column>
+          <el-table-column
+            v-else
+            :type="item.type"
+            :key="item.key"
+            :align="item.align||'center'"
+            :width="item.width"
             :prop="item.key"
             :label="item.title">
             <template slot-scope="scope">
@@ -51,15 +101,16 @@
                 :column="item" />
               <span v-else>{{ scope.row[item.key] || '-' }}</span>
             </template>
-        </el-table-column>
+          </el-table-column>
+        </template>
       </el-table>
     </el-row>
-    <el-row v-if="searchForm.hasOwnProperty('total')">
+    <el-row v-if="tablePages.hasOwnProperty('total')">
       <pagination
-        v-show="searchForm.total > 0"
-        :total="searchForm.total"
-        :page.sync="searchForm.page_index"
-        :limit.sync="searchForm.page_size"
+        v-show="tablePages.total > 0"
+        :total="tablePages.total"
+        :page.sync="tablePages.page_index"
+        :limit.sync="tablePages.page_size"
         @pagination="handlePage"
        />
     </el-row>
@@ -90,9 +141,13 @@ var exSlot = {
 export default {
   name: 'CommonTable',
   props: {
-    searchPlace: {
-      type: String,
-      default: '请输入关键字搜索'
+    searchFormConf: {
+      type: Object,
+      default: () => { return {
+        rowType:'flex',
+        rowJustify:'end',
+        labelWidth:'0px'
+      }}
     },
     searchButton: {
       type: Array,
@@ -132,6 +187,10 @@ export default {
       type: Object,
       default: () => { return {}}
     },
+    tablePages: {
+      type: Object,
+      default: () => { return {}}
+    },
     searchForm: {
       type: Object,
       default: () => { return {}}
@@ -148,6 +207,9 @@ export default {
   watch: {
   },
   methods: {
+    handleSelectionChange(val){
+      this.$emit('handleTableSelection', val)
+    },
     handleSearch(key){
       this.$emit('handleSearch', key, this.searchForm)
     },
@@ -171,4 +233,9 @@ export default {
     background:#f7fbff !important;
   }
 }
+
+  .input-with-select .el-input-group__prepend {
+    background-color: #fff;
+    width:90px;
+  }
 </style>

@@ -4,11 +4,13 @@
       :tableCols="tableCols"
       :tableData="tableData"
       :tableLoading="tableLoading"
+      :tablePages="tablePages"
       :searchForm.sync="searchForm"
       :searchButton="searchButton"
       @handleSearch="handleSearch"
       @handleTable="handleTable"
-      @handleAction="handleAction" />
+      @handleAction="handleAction">
+    </common-table>
     <my-modal
         :openModal.sync="modalOpen"
         :modalForm="modalForm"
@@ -29,10 +31,40 @@ export default {
   data() {
     return {
       searchForm:{
+        keyword: {
+          type:'input',
+          value:'',
+          prefixIcon:'el-icon-search',
+          style:'width:300px',
+          placeholder:'请输入关键字搜索'
+        },
+        type: {
+          type:'select_input',
+          value:'',
+          style:'width:320px',
+          placeholder:'请输入关键字搜索',
+          select:'',
+          selectOption:[
+            {label:'xxx',value:'1111'},
+            {label:'yyy',value:'2222'}
+          ]
+        },
+        select: {
+          type:'select',
+          value:'',
+          style:'width:300px',
+          placeholder:'请输入关键字搜索',
+          filterable: true,
+          selectOption:[
+            {label:'xxx',value:'1111'},
+            {label:'yyy',value:'2222'}
+          ]
+        }
+      },
+      tablePages:{
         page: 1,
         page_size: 10,
         total: 21,
-        keyword: '',
       },
       searchButton:[{
         key:'search',
@@ -46,6 +78,25 @@ export default {
         name:'重置'
       }],
       tableCols: [
+        {
+          type: 'selection',
+          key: 'select',
+          width: '55'
+        },
+        {
+          type: 'expand',
+          key: 'expand',
+          render: (h, params) => {
+            return h('div', [
+              h('i', {
+                class: params.row.idc?'el-icon-star-off':'el-icon-star-on',
+                style: {
+                  color: params.row.idc?'green':'red'
+                },
+              })
+            ])
+          }
+        },
         {
           title: '名称',
           key: 'title'
@@ -70,8 +121,7 @@ export default {
         },
         {
           title: '操作',
-          slot: 'action',
-          width: 120,
+          width: '120',
           align: 'center',
           render: (h, params) => {
             return h('div', [
@@ -133,18 +183,20 @@ export default {
   },
   methods: {
     handleSearch(key, form){
+      this.tableLoading = true
       switch (key) {
         case 'search':
-          
+          console.log(form)
+          this.tableLoading = false
           break;
         case 'reset':
-          
+          console.log(form)
+          this.tableLoading = false
           break;
       
         default:
           break;
       }
-      // this.tableLoading = true
       // ipPoolGet().then((res)=>{
       //   this.tableData = res.data.data
       // }).then(()=>{
@@ -173,12 +225,12 @@ export default {
     handleAction(row, type){
       switch (type) {
         case 'edit':
-          // this.modalTitle='修改IP池'
+          this.modalTitle='修改IP池'
           // this.modalForm = row
-          // this.actionButton = [
-          // {name:'取消',type:'default',icon:'', style:'',key:'cancel'},
-          // {name:'确定',type:'primary',icon:'', style:'',key:'changeConfirm'}]
-          // this.modalOpen = true
+          this.actionButton = [
+          {name:'取消',type:'default',icon:'', style:'',key:'cancel'},
+          {name:'确定',type:'primary',icon:'', style:'',key:'changeConfirm'}]
+          this.modalOpen = true
           break;
             
         case 'delete':
