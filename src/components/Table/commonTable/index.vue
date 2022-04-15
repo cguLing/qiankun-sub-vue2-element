@@ -75,6 +75,9 @@
         :stripe="tableParams.stripe"
         v-loading = "tableLoading"
         @selection-change="handleSelectionChange">
+        <template slot="empty">
+          {{tableParams.empty}}
+        </template>
         <template
             v-for="item in tableCols">
           <el-table-column
@@ -88,6 +91,7 @@
             v-else
             :type="item.type"
             :key="item.key"
+            :class-name="item.class"
             :align="item.align||'center'"
             :width="item.width"
             :prop="item.key"
@@ -185,7 +189,7 @@ export default {
     },
     tableParams: {
       type: Object,
-      default: () => { return {}}
+      default: () => { return {empty:'暂无数据'}}
     },
     tablePages: {
       type: Object,
@@ -269,7 +273,9 @@ export default {
     background:#f4f4f5 !important;
   }
 }
-
+.rt-table-expend .el-table__expand-icon{
+  display: none;
+}
 .input-with-select .el-input-group__prepend {
   background-color: #fff;
   width:90px;
