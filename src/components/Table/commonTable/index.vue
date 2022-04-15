@@ -155,7 +155,7 @@ export default {
         key:'search',
         type:'',
         style:'',
-        class:'rt-primaryB',
+        class:'rt-button-primary',
         icon:'el-icon-plus',
         name:'查询'
       }]}
@@ -165,7 +165,7 @@ export default {
       default: ()=>{ return [{
         key:'add',
         type:'',
-        class:'rt-primaryB',
+        class:'rt-button-primary',
         style:'',
         icon:'el-icon-plus',
         name:'新增'
@@ -226,16 +226,52 @@ export default {
 }
 </script>
 <style lang='less'>
-.rt-primaryB{
+.rt-button-primary{
   color:#409EFF;
   border-color:#409EFF;
   &:hover{
     background:#f7fbff !important;
   }
 }
-
-  .input-with-select .el-input-group__prepend {
-    background-color: #fff;
-    width:90px;
+.rt-button-success{
+  color:#67C23A;
+  border-color:#67C23A;
+  &:hover{
+    color:#67C23A !important;
+    border-color:#67C23A !important;
+    background:#f0f9eb !important;
   }
+}
+.rt-button-warning{
+  color:#E6A23C;
+  border-color:#E6A23C;
+  &:hover{
+    color:#E6A23C !important;
+    border-color:#E6A23C !important;
+    background:#fdf6ec !important;
+  }
+}
+.rt-button-danger{
+  color:#F56C6C;
+  border-color:#F56C6C;
+  &:hover{
+    color:#F56C6C !important;
+    border-color:#F56C6C !important;
+    background:#fef0f0 !important;
+  }
+}
+.rt-button-info{
+  color:#909399;
+  border-color:#909399;
+  &:hover{
+    color:#909399 !important;
+    border-color:#909399 !important;
+    background:#f4f4f5 !important;
+  }
+}
+
+.input-with-select .el-input-group__prepend {
+  background-color: #fff;
+  width:90px;
+}
 </style>

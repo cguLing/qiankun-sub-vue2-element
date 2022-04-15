@@ -70,7 +70,7 @@ export default {
         key:'search',
         type:'',
         style:'',
-        class:'rt-primaryB',
+        class:'rt-button-primary',
         icon:'',
         name:'查询'
       },{
