@@ -278,6 +278,6 @@ export default {
 }
 .input-with-select .el-input-group__prepend {
   background-color: #fff;
-  width:90px;
+  width:var(--input_select_width);
 }
 </style>

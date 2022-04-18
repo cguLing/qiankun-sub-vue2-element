@@ -35,7 +35,7 @@ export default {
           type:'input',
           value:'',
           prefixIcon:'el-icon-search',
-          style:'width:300px',
+          style:'width:350px;--input_select_width:100px',
           placeholder:'请输入关键字搜索'
         },
         type: {
