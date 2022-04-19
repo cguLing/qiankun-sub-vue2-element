@@ -3,7 +3,7 @@
     :visible.sync="open"
     width="40%"
     :title="title"
-    @on-cancel="handleAction('cancel')">
+    :before-close="handleClose">
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
         <el-form-item label="名称" prop="title">
           <el-input
@@ -80,6 +80,9 @@ export default {
     }
   },
   methods: {
+    handleClose(done){
+      this.handleAction('cancel')
+    },
     handleAction(type){
       switch (type) {
         case 'addConfirm':

@@ -23,6 +23,7 @@
 <script>
 import MyModal from './components/myModal.vue'
 import CommonTable from "@/components/Table/commonTable"
+import { deepClone } from '@/libs/util'
 export default {
   components:{
     CommonTable,
@@ -226,7 +227,7 @@ export default {
       switch (type) {
         case 'edit':
           this.modalTitle='修改IP池'
-          // this.modalForm = row
+          // this.modalForm = deepClone(row)
           this.actionButton = [
           {name:'取消',type:'default',icon:'', style:'',key:'cancel'},
           {name:'确定',type:'primary',icon:'', style:'',key:'changeConfirm'}]

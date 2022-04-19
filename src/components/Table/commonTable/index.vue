@@ -12,7 +12,8 @@
             :suffix-icon="searchForm[item].suffixIcon"
             :style="searchForm[item].style"
             v-model="searchForm[item].value"
-            :placeholder="searchForm[item].placeholder" />
+            :placeholder="searchForm[item].placeholder"
+            @keyup.enter.native="handleSearch(searchForm[item].searchKey||'search')" />
           <el-input
             v-if="searchForm[item].type=='select_input'"
             :prefix-icon="searchForm[item].prefixIcon"
@@ -20,7 +21,8 @@
             :style="searchForm[item].style"
             v-model="searchForm[item].value"
             :placeholder="searchForm[item].placeholder"
-            class="input-with-select">
+            class="input-with-select"
+            @keyup.enter.native="handleSearch(searchForm[item].searchKey||'search')" >
             <el-select
               v-model="searchForm[item].select"
               slot="prepend"
@@ -34,7 +36,8 @@
             v-model="searchForm[item].value"
             :placeholder="searchForm[item].placeholder"
             :clearable="searchForm[item].clearable"
-            :filterable="searchForm[item].filterable">
+            :filterable="searchForm[item].filterable"
+            @change="handleSearch(searchForm[item].searchKey||'search')" >
             <el-option
               v-for="obj in searchForm[item].selectOption"
               :key="obj.value"
@@ -95,7 +98,10 @@
             :align="item.align||'center'"
             :width="item.width"
             :prop="item.key"
-            :label="item.title">
+            :label="item.title"
+            :sortable="item.sortable"
+            :fixed="item.fixed"
+            :show-overflow-tooltip="item.tooltip">
             <template slot-scope="scope">
               <ex-slot
                 v-if="item.render"
@@ -145,6 +151,10 @@ var exSlot = {
 export default {
   name: 'CommonTable',
   props: {
+    styleFile:{
+      type: String,
+      default: 'commonTable.less'
+    },
     searchFormConf: {
       type: Object,
       default: () => { return {
@@ -206,6 +216,7 @@ export default {
   },
   data() {
     return {
+      style : require (`../../../styles/viewStyle/${this.styleFile}`)
     }
   },
   watch: {
