@@ -1,6 +1,6 @@
 <template>
   <el-card shadow="never">
-    <common-table ref=""
+    <common-table ref="commonTable"
       :tableCols="tableCols"
       :tableData="tableData"
       :tableLoading="tableLoading"

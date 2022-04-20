@@ -1,7 +1,7 @@
 import axios from 'axios'
 import store from '@/store'
 import { getToken } from '@/libs/auth'
-import { Message } from 'iview'
+import { MessageBox, Message } from 'element-ui'
 
 class HttpRequest {
   constructor (baseUrl = baseURL) {
@@ -53,33 +53,37 @@ class HttpRequest {
           if (location.href.indexOf('home') !== -1) {
             location.reload() // 为了重新实例化vue-router对象 避免bug
           } else {
-            this.$Modal.confirm({
-              content: '登录状态已过期，您可以继续留在该页面，或者重新登录',
-              title:'系统提示',
-              okText: '重新登录',
-              cancelText: '取消',
-              onOk: () => {
-                location.reload() // 为了重新实例化vue-router对象 避免bug
-              },
+            MessageBox.confirm(
+              '登录状态已过期，您可以继续留在该页面，或者重新登录',
+              '系统提示',
+              {
+                confirmButtonText: '重新登录',
+                cancelButtonText: '取消',
+                type: 'warning'
+              }
+            ).then(() => {
+              location.reload() // 为了重新实例化vue-router对象 避免bug
             })
           }
         } else if (code === 6401) {
           store.dispatch('resetToken')
-          this.$Modal.confirm({
-            content: '登录状态已过期，您可以继续留在该页面，或者重新登录',
-            title:'系统提示',
-            okText: '重新登录',
-            cancelText: '取消',
-            onOk: () => {
-              location.reload() // 为了重新实例化vue-router对象 避免bug
-            },
+          MessageBox.confirm(
+            '登录状态已过期，您可以继续留在该页面，或者重新登录',
+            '系统提示',
+            {
+              confirmButtonText: '重新登录',
+              cancelButtonText: '取消',
+              type: 'warning'
+            }
+          ).then(() => {
+            location.reload() // 为了重新实例化vue-router对象 避免bug
           })
           return false
         } else if (code === 400 || code === 403 || code !== 200) {
-          Message.error({
-            content: response.data.msg,
-            background: true,
-            duration: 3
+          Message({
+            message: response.data.msg,
+            type: 'error',
+            duration: 3*1000
           })
           return Promise.reject(response.data.msg)
         } else {
@@ -93,17 +97,17 @@ class HttpRequest {
           return
         }
         if (error.message&&error.message === 'Network Error') {
-          Message.error({
-            content: '服务器连接异常，请检查服务器！',
-            background: true,
-            duration: 3
+          Message({
+            message: '服务器连接异常，请检查服务器！',
+            type: 'error',
+            duration: 3*1000
           })
           return
         }
-        Message.error({
-          content: error.message,
-          background: true,
-          duration: 3
+        Message({
+          message: error.message,
+          type: 'error',
+          duration: 3*1000
         })
         return Promise.reject(error)
     })

@@ -240,6 +240,12 @@ export default {
   }
 }
 </script>
+<style lang='less' scoped>
+::v-deep .el-form-item__label{
+  font-size: 13px;
+  font-weight: 500;
+}
+</style>
 <style lang='less'>
 .rt-button-primary{
   color:#409EFF;
