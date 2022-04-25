@@ -72,12 +72,12 @@ module.exports = {
       'Access-Control-Allow-Origin': '*'
     },
     proxy: {
-      '/api/v1/': {
-        target: 'http://127.0.0.1:9999',
-        changeOrigin: true
-        // pathRewrite: {
-        //   '^/api/v1/vpn': '/api/v1/vpn'
-        // }
+      '/api': {
+        target: 'http://dns.devops.yd.netease.com',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api': ''
+        }
       },
       '/auth': {
         target: 'https://ids.corp.youdao.com',

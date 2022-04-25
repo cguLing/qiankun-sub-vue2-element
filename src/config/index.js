@@ -2,7 +2,7 @@ export default {
   /**
    * @description 配置显示在浏览器标签的title
    */
-  title: '子系统模板',
+  title: '云解析DNS',
   /**
    * @description token在Cookie中存储的天数，默认1天
    */

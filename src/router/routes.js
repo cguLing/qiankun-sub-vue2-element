@@ -12,80 +12,87 @@ const routes =  [
         path: '/home',
         name: 'home',
         meta: {
-          hideInMenu: true,
-          layout: true,
-          title: '首页'
+          // hideInMenu: true,
+          // layout: true,
+          icon: 'example',
+          title: '域名注册'
         },
         component: '/home/index.vue'
       },
-      {
-        path: '/dept',
-        name: 'dept',
-        meta: {
-          hideInMenu: false,
-          icon: 'tree-table',
-          title: '部门管理'
-        },
-        component: '/dept/index.vue'
-      }
     ]
   },
   {
-    path: '/project',
+    path: '/my_dns',
+    meta: {
+      layout: true,
+    },
+    component: 'Main',
+    children: [{
+      path: '/my_dns',
+      name: 'my_dns',
+      meta: {
+        icon: 'dict',
+        title: '我的域名'
+      },
+      component: '/my_dns/index.vue'
+    }]
+  },
+  {
+    path: '/root_domain',
     meta: {
       layout: true,
     },
     component: 'Main',
     children: [
       {
-        path: '/project',
-        name: 'project',
+        path: '/root_domain',
+        name: 'root_domain',
         meta: {
           icon: 'tree-table',
-          title: '项目组'
+          title: '根域名管理'
         },
-        component: '/project/index.vue'
+        component: '/root_domain/index.vue'
       }
     ]
   },
   {
-    path: '/myConnect',
-    name: 'myConnect',
+    path: '/tool',
+    name: 'tool',
     meta: {
-      icon: 'tree-table',
-      title: '我的服务'
+      icon: 'chart',
+      title: '常用工具'
     },
     component: 'Main',
     children: [
       {
-        path: '/myConnect/IDC',
-        name: 'myConnect_IDC',
+        path: '/tool/search_record',
+        name: 'search_record',
         meta: {
-          icon: 'tree-table',
-          title: '服务1'
+          icon: 'cmdb-search',
+          title: '记录查询'
         },
-        component: '/service/index.vue'
+        component: '/tool/search_record/index.vue'
       },
-      {
-        path: '/myConnect/IT',
-        name: 'myConnect_IT',
-        meta: {
-          icon: 'tree-table',
-          title: '服务2'
-        },
-        component: '/service/index.vue'
-      }
+      // {
+      //   path: '/myConnect/IT',
+      //   name: 'myConnect_IT',
+      //   meta: {
+      //     icon: 'tree-table',
+      //     title: '服务2'
+      //   },
+      //   component: '/service/index.vue'
+      // }
     ]
   },
-  {
-    path: 'https://www.baidu.com/',
-    name: 'doc',
-    meta: {
-      icon: 'tree-table',
-      title: '操作文档',
-      target: 'link'
-    }
-  },
+  // {
+  //   path: 'https://www.baidu.com/',
+  //   name: 'doc',
+  //   meta: {
+  //     icon: 'tree-table',
+  //     title: '操作文档',
+  //     target: 'link'
+  //   }
+  // },
   {
     path: '/404',
     meta: {
