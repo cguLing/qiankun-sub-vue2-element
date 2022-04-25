@@ -48,7 +48,7 @@ export default {
     // Hamburger
   },
   created() {
-    document.title = this.docTitle
+    // document.title = this.docTitle
   },
   mounted() {
     this.setDialogWidth()
@@ -57,7 +57,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['docTitle']),
+    // ...mapState(['docTitle']),
     ...mapGetters([
       'sidebar'
     ])

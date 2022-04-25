@@ -1,11 +1,8 @@
 <template>
-<div>
-  404
-</div>
-  <!-- <Row class="back">
-    <Col span="13" style="height:100%">
-      <Row type="flex" justify="end" style="position: relative;top:15%">
-        <Col span="12">
+  <el-row class="back">
+    <el-col span="13" style="height:100%">
+      <el-row type="flex" justify="end" style="position: relative;top:15%">
+        <el-col span="12">
         <div class="parent">
           <div class="ship">
             <img :src="alien_ship" alt="" width="300" >
@@ -14,18 +11,18 @@
             <img :src="conversation" alt="" width="330" >
           </div>
         </div>
-        </Col>
-      </Row>
-    </Col>
-    <Col span="11" style="height:100%">
+        </el-col>
+      </el-row>
+    </el-col>
+    <el-col span="11" style="height:100%">
       <div class="bullshit">
         <div class="bullshit__oops">OOPS!</div>
         <div class="bullshit__headline">{{ message }}</div>
         <div class="bullshit__info">{{ info }}</div>
-        <Button type="primary" shape="circle" to="/">返回首页</Button>
+        <el-button type="primary" shape="circle" @click="handleBack">返回首页</el-button>
       </div>
-    </Col>
-  </Row> -->
+    </el-col>
+  </el-row>
 </template>
 
 <script>
@@ -44,6 +41,11 @@ export default {
     return {
       alien_ship: require('@/assets/images/error-page/alien-ship.gif'),
       conversation: require('@/assets/images/error-page/404.png')
+    }
+  },
+  methods:{
+    handleBack(){
+      this.$router.push('/')
     }
   }
 }

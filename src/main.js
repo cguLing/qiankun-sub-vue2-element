@@ -13,13 +13,14 @@ import 'element-ui/lib/theme-chalk/index.css';
 import config from '@/config'
 // import './index.less'
 // import '@/assets/icons/iconfont.css'
-import routes from "./router";
-import VueRouter from "vue-router";
+import router,{ resetRouter } from "./router";
+// import VueRouter from "vue-router";
 import '@/components/resource/fonts'
 import keycloak from '@dsb-norge/vue-keycloak-js';
 import {
   userinfoGet
 } from "@/api/other/ids"
+import './permission'
 
 
 // 加载系统配置
@@ -40,11 +41,8 @@ Vue.prototype.$config = config
 
 
 if (!window.__POWERED_BY_QIANKUN__) {
-  const router = new VueRouter({
-    base: window.__POWERED_BY_QIANKUN__ ? routerBase : process.env.BASE_URL,
-    mode: 'history',
-    routes
-  })
+  sessionStorage.setItem('qiankun',false)
+  document.title = config.title
   const sso = process.env.NODE_ENV == 'production'?config.prod_keycloak:config.dev_keycloak
   Vue.use(keycloak , {
     init: {
@@ -82,22 +80,20 @@ export async function bootstrap () {
 }
 
 export async function mount (props) { 
-  props.onGlobalStateChange((state, prev) => {
+  props.onGlobalStateChange(async (state, prev) => {
     console.log('globalState 状态变更：')
   // state: 变更后的状态; prev 变更前的状态
     console.log(state, prev);
-    store.dispatch('changeUserInfo',state)
+    await store.dispatch('changeUserInfo',state)
+    // await resetRouter()
   });
   // console.log(props.getGlobalState())
-  store.dispatch('changeUserInfo',props.getGlobalState())
+  await store.dispatch('changeUserInfo',props.getGlobalState())
+  // await resetRouter()
   // store.commit('setToken', props.getGlobalState("a"), true); 
 
   const { container, routerBase } = props
-  const router = new VueRouter({
-    base: routerBase,
-    mode: 'history',
-    routes
-  })
+  sessionStorage.setItem('baseurl',routerBase)// TODO:待解决，首次进入找不到,router/index.js
   instance = new Vue({
     router,
     store,

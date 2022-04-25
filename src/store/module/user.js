@@ -64,15 +64,36 @@ export default {
   },
   actions: {
     changeUserInfo({commit}, user){
-      commit('setUserName',user.username)
-      commit('setJobNumber',user.jobNumber)
-      commit('setEmployeeName',user.employeeName)
-      commit('setType',user.type)
-      commit('setCorpMail',user.corpMail)
-      commit('setRdMail',user.rdMail)
-      commit('setDept1Name',user.dept1Name)
-      commit('setDept2Name',user.dept2Name)
-      commit('setDept3Name',user.dept3Name)
+      return new Promise((resolve, reject) => {
+        if(!user){
+          userinfoGet().then((res)=>{
+            user = res.data
+            commit('setUserName',user.username)
+            commit('setJobNumber',user.jobNumber)
+            commit('setEmployeeName',user.employeeName)
+            commit('setType',user.type)
+            commit('setCorpMail',user.corpMail)
+            commit('setRdMail',user.rdMail)
+            commit('setDept1Name',user.dept1Name)
+            commit('setDept2Name',user.dept2Name)
+            commit('setDept3Name',user.dept3Name)
+            resolve(user)
+          }).catch(err => {
+            reject('获取用户信息出错')
+          })
+        } else {
+          commit('setUserName',user.username)
+          commit('setJobNumber',user.jobNumber)
+          commit('setEmployeeName',user.employeeName)
+          commit('setType',user.type)
+          commit('setCorpMail',user.corpMail)
+          commit('setRdMail',user.rdMail)
+          commit('setDept1Name',user.dept1Name)
+          commit('setDept2Name',user.dept2Name)
+          commit('setDept3Name',user.dept3Name)
+          resolve(user)
+        }
+      })
     },
     // 新SSO
     keycloakLogin({ commit }, accessToken) {

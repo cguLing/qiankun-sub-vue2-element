@@ -44,5 +44,26 @@ generaRoute(result,routesDefault)
 //   }
 //   return false
 // })
-const routes = result
-export default routes
+// const routes = result
+// export default routes
+
+const createRouter = () =>
+  new VueRouter({
+    base: window.__POWERED_BY_QIANKUN__ ? '/vpn' : process.env.BASE_URL,
+    // scrollBehavior: () => ({ y: 0 }),
+    routes: result,
+    mode: 'history'
+  });
+
+const router = createRouter();
+
+export function resetRouter() {
+  return new Promise(resolve => {
+    routes = []
+    generaRoute(routes,routesDefault)
+    const newRouter = createRouter();
+    router.matcher = newRouter.matcher; // reset router
+    resolve(routes)
+  })
+}
+export default router
