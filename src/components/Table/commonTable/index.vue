@@ -59,7 +59,7 @@
       </el-form>
     </el-row>
     <slot></slot>
-    <el-row :style="Object.keys(searchForm).length==0?'margin-bottom:10px':'margin:0px 0 10px 0'">
+    <el-row v-if="tableButton.length>0" :style="Object.keys(searchForm).length==0?'margin-bottom:10px':'margin:0px 0 10px 0'">
       <el-button
         v-for="item in tableButton"
         :key="item.key"
