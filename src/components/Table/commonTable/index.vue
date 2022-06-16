@@ -1,7 +1,7 @@
 <template>
   <div>
-    <el-row v-if="!$slots.default" :type="searchFormConf.rowType" :justify="searchFormConf.rowJustify">
-      <el-form ref="searchForm" :model="searchForm" inline :label-width="searchFormConf.labelWidth">
+    <el-row :type="searchFormConf.rowType" :justify="searchFormConf.rowJustify" style="margin:0">
+      <el-form v-if="!$slots.default" ref="searchForm" :model="searchForm" inline :label-width="searchFormConf.labelWidth" @submit.native.prevent>
         <el-form-item
           v-for="item in Object.keys(searchForm)" :key="item"
           :prop="item+'.value'"
@@ -57,8 +57,8 @@
             plain @click="handleSearch(item.key)">{{item.name}}</el-button>
         </el-form-item>
       </el-form>
+      <slot></slot>
     </el-row>
-    <slot></slot>
     <el-row v-if="tableButton.length>0" :style="Object.keys(searchForm).length==0?'margin-bottom:10px':'margin:0px 0 10px 0'">
       <el-button
         v-for="item in tableButton"
@@ -73,7 +73,7 @@
       <el-table
         ref="table"
         :data="tableData"
-        :header-cell-style="{background:'#f8f8f9',padding:'8px'}"
+        :header-cell-style="tableParams.stripe?{background:'#f3f3f3',padding:'8px'}:{background:'#f8f8f9',padding:'8px'}"
         :border="tableParams.border"
         :stripe="tableParams.stripe"
         v-loading = "tableLoading"
