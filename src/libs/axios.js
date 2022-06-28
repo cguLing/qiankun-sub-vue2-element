@@ -42,7 +42,7 @@ class HttpRequest {
     // 响应拦截
     instance.interceptors.response.use(
       response => {
-        if(!response.data.code){
+        if(!response.data.code){//处理userinfo
           return response
         }
         const code = response.data.code
