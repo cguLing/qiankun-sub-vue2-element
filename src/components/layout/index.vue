@@ -5,7 +5,9 @@
       class="drawer-bg"
       @click="handleClickOutside"
     /> -->
-    <el-container style="height:100%">
+    <zhimaHeader ref="header">
+    </zhimaHeader>
+    <el-container style="height:calc(100% - 40px)">
       <sidebar />
       <el-container>
         <el-header style="padding:0;height:auto">

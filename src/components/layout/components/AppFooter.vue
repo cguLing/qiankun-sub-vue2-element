@@ -29,7 +29,7 @@ export default {
 
 <style scoped lang="scss">
   .app-footer {
-    height: 50px;
+    height: 20px;
     overflow: hidden;
     position: relative;
     background: rgb(245, 247, 249);//#f3f3f3;

@@ -22,6 +22,9 @@ import {
 } from "@/api/other/ids"
 import './permission'
 
+import zhimaHeader from 'vue-zhima-components'
+Vue.use(zhimaHeader);
+
 import Pagination from '@/components/Pagination'
 // 全局组件挂载
 Vue.component('Pagination', Pagination)
