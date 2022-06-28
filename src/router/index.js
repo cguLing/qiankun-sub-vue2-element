@@ -49,7 +49,7 @@ generaRoute(result,routesDefault)
 
 const createRouter = () =>
   new VueRouter({
-    base: window.__POWERED_BY_QIANKUN__ ? '/vpn' : process.env.BASE_URL,
+    base: window.__POWERED_BY_QIANKUN__ ? '/bus' : process.env.BASE_URL,
     // scrollBehavior: () => ({ y: 0 }),
     routes: result,
     mode: 'history'

@@ -22,6 +22,46 @@ import {
 } from "@/api/other/ids"
 import './permission'
 
+import Pagination from '@/components/Pagination'
+// 全局组件挂载
+Vue.component('Pagination', Pagination)
+
+// 用闭包实现局部对象storage(注意Storage的方法都重写一遍，不然调用其对象原型方法会报错。)
+var sessionStorageMock = (function(win) {
+  var storage = win.sessionStorage;
+  return {
+      setItem: function(key, value) {
+        var setItemEvent = new Event("setItemEvent");
+        var oldValue = storage[key];
+        setItemEvent.key = key;
+        // 新旧值深度判断，派发监听事件
+        if (oldValue !== value) {
+            setItemEvent.newValue = value;
+            setItemEvent.oldValue = oldValue;
+            win.dispatchEvent(setItemEvent);
+            storage[key] = value;
+            return true;
+        }
+        return false;
+      },
+      getItem: function(key) {
+        return storage[key];
+      },
+      removeItem: function(key) {
+        storage[key] = null;
+        return true;
+      },
+      clear: function() {
+          storage.clear();
+          return true;
+      },
+      key: function (index) {
+          return storage.key(index);
+      }
+  };
+}(window));
+
+Object.defineProperty(window, 'sessionStorage', { value: sessionStorageMock, writable: true });
 
 // 加载系统配置
 let sysMainframeInfo = {};
