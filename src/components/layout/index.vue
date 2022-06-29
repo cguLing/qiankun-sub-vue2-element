@@ -5,9 +5,9 @@
       class="drawer-bg"
       @click="handleClickOutside"
     /> -->
-    <zhimaHeader ref="header">
+    <zhimaHeader ref="header" v-if="!judgeQiankun">
     </zhimaHeader>
-    <el-container style="height:calc(100% - 40px)">
+    <el-container :style="judgeQiankun?'height:100%':'height:calc(100% - 40px)'">
       <sidebar />
       <el-container>
         <el-header style="padding:0;height:auto">
@@ -40,6 +40,9 @@ export default {
   },
   mixins: [ResizeMixin],
   computed: {
+    judgeQiankun(){
+      return window.__POWERED_BY_QIANKUN__
+    },
     username () {
       return this.$store.state.user.username
     },
