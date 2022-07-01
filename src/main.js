@@ -126,7 +126,9 @@ function redirectPopup(container) {
   // const editPopup = 'el-dialog__wrapper story-para-edit-popup'
   const whiteList = [
     'el-select-dropdown el-popper',
+    'el-dropdown-menu el-popper el-dropdown-menu--small',
     'el-tooltip__popper is-dark',
+    'el-tooltip__popper is-light',
     'el-dialog__wrapper',
     'el-popover el-popper',
     'el-autocomplete-suggestion el-popper',
