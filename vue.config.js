@@ -4,7 +4,7 @@ const path = require('path')
 function resolve (dir) {
   return path.join(__dirname, dir)
 }
-
+const publicPath = process.env.NODE_ENV === 'production' ? 'https://zhima-bus.site.youdao.com/' : `http://localhost:8000`;
 module.exports = {
   publicPath: '/subapp/bus',
   transpileDependencies: ['common'],
