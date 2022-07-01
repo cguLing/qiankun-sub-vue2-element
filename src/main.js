@@ -118,6 +118,39 @@ if (!window.__POWERED_BY_QIANKUN__) {
   });
 }
 
+let originFn = document.body.appendChild.bind(document.body)
+
+function redirectPopup(container) {
+ 
+  // 子应用中需要挂载到子应用的弹窗的className，用作标记
+  // const editPopup = 'el-dialog__wrapper story-para-edit-popup'
+  const whiteList = [
+    'el-select-dropdown el-popper',
+    'el-tooltip__popper is-dark',
+    'el-dialog__wrapper',
+    'el-popover el-popper',
+    'el-autocomplete-suggestion el-popper',
+    'el-message el-message--success',
+    'el-message el-message--warning',
+    'el-message el-message--error',
+    'el-message el-message--info'
+  ]
+
+  // 保存原有document.body.appendChild方法
+  let originFn = document.body.appendChild.bind(document.body)
+
+  // 重写appendChild方法
+  document.body.appendChild = (dom) => {
+
+      // 根据标记，来区分是否用新的挂载方式
+      if (whiteList.includes(dom.className)) {
+          container.querySelector('#subContainer').appendChild(dom)
+      } else {
+          originFn(dom)
+      }
+  }
+}
+
 export async function bootstrap () {
   console.log('[vue] vue app bootstraped')
 }
@@ -136,6 +169,7 @@ export async function mount (props) {
   // store.commit('setToken', props.getGlobalState("a"), true); 
 
   const { container, routerBase } = props
+  redirectPopup(container)
   sessionStorage.setItem('baseurl',routerBase)// TODO:待解决，首次进入找不到,router/index.js
   instance = new Vue({
     router,
@@ -149,4 +183,5 @@ export async function unmount () {
   instance.$destroy()
   instance.$el.innerHTML = ''
   instance = null
+  document.body.appendChild = originFn
 }

@@ -57,6 +57,21 @@ module.exports = {
         return options;
       })
       .end();
+      
+    //图片打包
+    config.module
+    .rule("images")
+    .test(/\.(png|jpe?g|gif|webp)$/)
+    .use("url-loader")
+    .loader("url-loader")
+    .tap((options) => {
+      options = {
+        // limit: 4096,
+        name: "img/[name].[hash:7].[ext]",
+        publicPath:'/assets'
+      };
+      return options;
+    })
   },
   configureWebpack: {
     output: {
