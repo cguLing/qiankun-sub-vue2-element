@@ -28,6 +28,20 @@ module.exports = {
     // when there are many pages, it will cause too many meaningless requests
     config.plugins.delete('prefetch')
 
+    //将 font文件 编译成 base64 内嵌到css文件
+    config.module
+      .rule("fonts")
+      .test(/\.(ttf|otf|eot|woff|woff2)$/)
+      .use("url-loader")
+      .loader("url-loader")
+      .tap((options) => {
+        options = {
+          // limit: 10000,
+          name: "fonts/[name].[ext]",
+        };
+        return options;
+      })
+    
     // 原有的svg图像处理loader添加exclude
     config.module
       .rule('svg')
