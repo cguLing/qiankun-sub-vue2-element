@@ -130,6 +130,7 @@ function redirectPopup(container) {
     'el-tooltip__popper is-dark',
     'el-tooltip__popper is-light',
     'el-dialog__wrapper',
+    'el-dialog__wrapper cus-dialog-container',
     'el-popover el-popper',
     'el-autocomplete-suggestion el-popper',
     'el-message el-message--success',
