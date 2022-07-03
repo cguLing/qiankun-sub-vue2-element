@@ -1,7 +1,7 @@
 
 import router from "./router";
 // import router,{ resetRouter } from "./router";
-// import store from './store'
+import store from './store'
 // if (!window.__POWERED_BY_QIANKUN__) {
 //   router.beforeEach(async (to, from, next) => {
 //     if(to.fullPath == '/404'){
@@ -38,6 +38,11 @@ import router from "./router";
 //   })
 // } else {
   router.beforeEach((to, from, next) => {
-    next()
+    if(!store.state.user.username){ //TODO: 刷新的时候会操作，改成sessionStore (退出登录)
+      store.dispatch('getKeycloakInfo')
+      next()
+    } else {
+      next()
+    }
   })
 // }
