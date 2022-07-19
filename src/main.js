@@ -125,13 +125,17 @@ function redirectPopup(container) {
   // 子应用中需要挂载到子应用的弹窗的className，用作标记
   // const editPopup = 'el-dialog__wrapper story-para-edit-popup'
   const whiteList = [
+    'el-notification right',
     'el-select-dropdown el-popper',
+    'el-select-dropdown el-popper is-multiple',
     'el-dropdown-menu el-popper el-dropdown-menu--small',
     'el-tooltip__popper is-dark',
     'el-tooltip__popper is-light',
     'el-dialog__wrapper',
     'el-dialog__wrapper cus-dialog-container',
+    'el-message-box__wrapper',
     'el-popover el-popper',
+    'el-popper el-cascader__dropdown',
     'el-autocomplete-suggestion el-popper',
     'el-message el-message--success',
     'el-message el-message--warning',
