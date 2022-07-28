@@ -1,8 +1,6 @@
-// import {
-//   login,
-//   logout,
-//   getUserInfo
-// } from '@/api/user'
+import {
+  userinfoGet
+} from '@/api/other/ids'
 import { setToken, getToken, removeToken } from '@/libs/auth'
 import Vue from 'vue'
 
