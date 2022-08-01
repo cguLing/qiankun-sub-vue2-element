@@ -22,7 +22,7 @@ class HttpRequest {
     instance.interceptors.request.use(
       config => {
         if (getToken()) { //新SSO
-          config.headers['Authorization'] = `Bearer ${getToken()}` //新SSO
+          if(!config.headers.Authorization)config.headers['Authorization'] = `Bearer ${getToken()}` //新SSO
           
           // 添加全局的loading...
           if (!Object.keys(this.queue).length) {
