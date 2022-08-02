@@ -97,6 +97,8 @@
             :class-name="item.class"
             :align="item.align||'center'"
             :width="item.width"
+            :min-width="item.minWidth"
+            :max-width="item.maxWidth"
             :prop="item.key"
             :label="item.title"
             :sortable="item.sortable"
