@@ -26,19 +26,3 @@ export default {
   }
 }
 </script>
-
-<style scoped lang="scss">
-  .app-footer {
-    height: 20px;
-    overflow: hidden;
-    position: relative;
-    background: rgb(245, 247, 249);//#f3f3f3;
-    // box-shadow: 0 1px 4px rgba(0,21,41,.08);
-    .copyright {
-      width: 100%;
-      padding-top: 16px;
-      text-align: center;
-      color: #666;
-    }
-  }
-</style>

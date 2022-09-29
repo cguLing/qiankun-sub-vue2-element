@@ -202,17 +202,17 @@ export default {
       //   tld:this.queryParams.tld==''?undefined:this.queryParams.tld
       // };
       if(this.queryParams.tld=='')this.queryParams.tld=undefined;
-      getZone(this.name,this.queryParams).then((res)=>{
-          if(res.data.code==0){
-            this.total = res.data.count;//TODO:res.data.count
-            this.tldList=res.data.data;
-          }else{
-            this.msgError(res.data.data);
-          }
-      }).catch(() => {
-            this.msgError("无查询数据");
-            this.tldList=[];
-        });
+      // getZone(this.name,this.queryParams).then((res)=>{
+      //     if(res.data.code==0){
+      //       this.total = res.data.count;//TODO:res.data.count
+      //       this.tldList=res.data.data;
+      //     }else{
+      //       this.msgError(res.data.data);
+      //     }
+      // }).catch(() => {
+      //       this.msgError("无查询数据");
+      //       this.tldList=[];
+      //   });
       this.loading=false;
     },
     handleQuery() {

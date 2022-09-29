@@ -1,17 +1,57 @@
 #subContainer {
- .sidebar-container{
-   width: 180px;
- }
+  .sidebar-logo-container {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    background: @menu_title_bg;
+    text-align: center;
+    overflow: hidden;
+  
+    & .sidebar-logo-link {
+      height: 100%;
+      width: 100%;
+  
+      & .sidebar-logo {
+        width: 32px;
+        height: 32px;
+        vertical-align: middle;
+        margin-right: 12px;
+        margin-bottom: 5px;
+      }
+  
+      & .sidebar-title {
+        display: inline-block;
+        margin: 0;
+        color: @menu_title_ct;
+        font-weight: 600;
+        line-height: 50px;
+        font-size: 14px;
+        font-family: Avenir, Helvetica Neue, Arial, Helvetica, sans-serif;
+        vertical-align: middle;
+        margin-right: 10px;
+      }
+    }
+  
+    &.collapse {
+      .sidebar-logo {
+        margin-right: 0px;
+      }
+    }
+  }
+  .sidebar-container{
+    width: 180px;
+  }
   .main-container {
     min-height: 100%;
     transition: margin-left .28s;
-    margin-left: $sideBarWidth;
+    margin-left: @sideBarWidth;
     position: relative;
   }
   .el-menu-item.is-active {
     position: relative;
-    color: #fff !important;
-    background-color: $menuHover !important;
+    // color: #fff !important;
+    background-color: @menu_active_bg !important;
     border-left:  solid;
     outline: 0 none;
     .icon-default {
@@ -33,10 +73,10 @@
     border-radius: 8px;
   }
 
-  // .el-submenu__title i {
-  //   color: #fff;
-  //   font-weight: 400px;
-  // }
+  .el-submenu__title i {
+    color: @menu_text;
+    font-weight: 400px;
+  }
 
 //   .el-submenu .el-menu-item {
 //     font-size:12px;
@@ -62,7 +102,8 @@
   height: 42px;
   font-weight: 500;
   line-height: 42px;
-  padding: 0 45px;
+  // padding: 0 45px;
+  padding-left: 16px !important;
   min-width: 180px;
 }
 
@@ -81,8 +122,8 @@
   .sidebar-container {
     box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 5px 0px;
     transition: width 0.28s;
-    width: $sideBarWidth !important;
-    background-color: $menuBg;
+    width: @sideBarWidth !important;
+    background-color: @menuBg;
     height: 100%;
     position: relative;
     font-size: 11px;
@@ -100,7 +141,7 @@
 
     .scrollbar-wrapper {
       overflow-x: hidden !important;
-      background-color: rgb(245, 247, 249);
+      background-color: @layout_sider_bg;
     }
 
     .el-scrollbar__bar.is-vertical {
@@ -113,7 +154,7 @@
 
     &.has-logo {
       .el-scrollbar {
-        height: calc(100% - 90px);
+        height: calc(~"100% - 90px");
       }
     }
 
@@ -136,7 +177,7 @@
       height: 100%;
       width: 100% !important;
       // list-style:none;
-      border-right: 1px solid #e6e6e6;
+      // border-right: 1px solid @menu_border;
       position: relative;
       margin: 0;
       padding-left: 0;
@@ -147,24 +188,24 @@
     .submenu-title-noDropdown,
     .el-submenu__title {
       &:hover {
-        color: $menuActiveText !important;
-        background-color: #fff !important;
+        color: @menuTextHover !important;
+        background-color: @menu_hover_bg !important;
       }
     }
 
     .is-active:hover {
-      color: #fff !important;
-      background-color: $menuHover !important;
+      color: @menuActiveText !important;
+      background-color: @menu_active_bg !important;
     }
 
     & .nest-menu .el-submenu>.el-submenu__title,
     & .el-submenu .el-menu-item {
-      min-width: $sideBarWidth !important;
-      // background-color: $subMenuBg !important;
+      min-width: @sideBarWidth !important;
+      // background-color: @subMenuBg !important;
       &:hover {
-        // background-color: $subMenuHover !important;
-        color: $menuActiveText !important;
-        background-color: #fff !important;
+        // background-color: @subMenuHover !important;
+        color: @menuTextHover !important;
+        background-color: @menu_hover_bg !important;
       }
     }
   }
@@ -223,7 +264,7 @@
   }
 
   .el-menu--collapse .el-menu .el-submenu {
-    min-width: $sideBarWidth !important;
+    min-width: @sideBarWidth !important;
   }
 
   // mobile responsive
@@ -235,14 +276,14 @@
     .sidebar-container {
       box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 5px 0px;
       transition: transform .28s;
-      width: $sideBarWidth !important;
+      width: @sideBarWidth !important;
     }
 
     &.hideSidebar {
       .sidebar-container {
         pointer-events: none;
         transition-duration: 0.3s;
-        transform: translate3d(-$sideBarWidth, 0, 0);
+        transform: translate3d(-@sideBarWidth, 0, 0);
       }
     }
   }
@@ -266,7 +307,7 @@
 
   .nest-menu .el-submenu>.el-submenu__title,
   .el-menu-item {
-    background-color: $subMenuBg  !important;
+    background-color: @subMenuBg  !important;
     font-size:12px;
     height: 42px;
     font-weight: 500;
@@ -274,9 +315,9 @@
     // padding: 0 45px;
     padding-left: 16px !important;
     &:hover {
-      // you can use $subMenuHover
-      color: $menuActiveText !important;
-      background-color: #fff !important;
+      // you can use @subMenuHover
+      color: @menuTextHover !important;
+      background-color: @menu_hover_bg !important;
     }
   }
 
@@ -298,4 +339,23 @@
       border-radius: 20px;
     }
   }
+}
+
+
+.hamburger-container {
+  background: @hamburger_bg;
+  box-shadow: fade(#646464, 20%) -1px 0px 0px 1px;
+  height: 40px;
+  line-height: 40px;
+  position: relative;
+  text-align:center;
+  height: 100%;
+  // float: left;
+  cursor: pointer;
+  transition: background .3s;
+  -webkit-tap-highlight-color:transparent;
+
+    &:hover {
+        background: rgba(0, 0, 0, .065)
+    }
 }

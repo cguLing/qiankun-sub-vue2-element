@@ -14,7 +14,7 @@
           <navbar />
           <tags-view v-if="needTagsView" />
         </el-header>
-        <el-main style="background:#fff">
+        <el-main style="">
           <app-main />
         </el-main>
         <el-footer style="padding:0;height:auto">
@@ -77,12 +77,12 @@ export default {
   },
 };
 </script>
-<style lang="scss" scoped>
-@import "~@/styles/mixin.scss";
-@import "~@/styles/variables.scss";
+<style lang="less" scoped>
+@import "~@/styles/mixin.less";
+@import "~@/styles/index.less";
 
 .app-wrapper {
-  @include clearfix;
+  .clearfix();
   position: relative;
   height: 100%;
   width: 100%;
@@ -108,12 +108,12 @@ export default {
   top: 0;
   right: 0;
   z-index: 9;
-  width: calc(100% - #{$sideBarWidth});
+  width: calc(~"100% - "@sideBarWidth);
   transition: width 0.28s;
 }
 
 .hideSidebar .fixed-header {
-  width: calc(100% - 54px);
+  width: calc(~"100% - 54px");
 }
 
 .mobile .fixed-header {

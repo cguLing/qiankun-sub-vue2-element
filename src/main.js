@@ -3,7 +3,7 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import '@/icons';
 import '@/styles/admin.scss';
-import '@/styles/index.scss'; // global css
+import '@/styles/index.less'; // global less
 import './public-path'
 import Vue from 'vue'
 import App from './App'
@@ -11,7 +11,6 @@ import store from './store'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import config from '@/config'
-// import './index.less'
 // import '@/assets/icons/iconfont.css'
 import router,{ resetRouter } from "./router";
 // import VueRouter from "vue-router";

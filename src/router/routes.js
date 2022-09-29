@@ -73,15 +73,15 @@ const routes =  [
         },
         component: '/tool/search_record/index.vue'
       },
-      // {
-      //   path: '/myConnect/IT',
-      //   name: 'myConnect_IT',
-      //   meta: {
-      //     icon: 'tree-table',
-      //     title: '服务2'
-      //   },
-      //   component: '/service/index.vue'
-      // }
+      {
+        path: '/tools/ecs',
+        name: 'ecs',
+        meta: {
+          icon: 'cmdb-search',
+          title: 'ECS查询'
+        },
+        component: '/tool/search_record/index.vue'
+      }
     ]
   },
   // {

@@ -15,6 +15,17 @@ module.exports = {
       }
     }
   },
+  // less 全局变量
+  pluginOptions: {
+    'style-resources-loader': {
+      preProcessor: 'less',
+      patterns: [
+      	// 注意路径，不能使用配置中的别名路径（例如：alias 配置下的路径别名）
+        // path.resolve(__dirname, 'src/index.less'), 
+        // path.resolve(__dirname, 'src/index_white.less'),
+      ]
+    }
+  },
   chainWebpack: (config) => {
     config.resolve.symlinks(false)
     config.plugin('preload').tap(() => [
