@@ -1,5 +1,5 @@
-// @import './dark.less';
-@import './white.less';
+@import './dark.less';
+// @import './white.less';
 @import './mixin.less';
 @import './transition.less';
 @import './element-ui.less';
@@ -34,6 +34,7 @@
 // the :export directive is the magic sauce for webpack
 // https://www.bluematador.com/blog/how-to-share-variables-between-js-and-sass
 :export {
+  logColor:@log_color;
   menuText: @menuText;
   menuActiveText: @menuActiveText;
   subMenuActiveText: @subMenuActiveText;

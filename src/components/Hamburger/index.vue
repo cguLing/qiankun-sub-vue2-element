@@ -4,6 +4,7 @@
       :class="{'is-active':isActive}"
       class="hamburger-svg"
       viewBox="0 0 1024 1024"
+      :fill="variables.menuText"
       xmlns="http://www.w3.org/2000/svg"
       width="64"
       height="64"
@@ -14,12 +15,18 @@
 </template>
 
 <script>
+import variables from '@/styles/index.less'
 export default {
   name: 'Hamburger',
   props: {
     isActive: {
       type: Boolean,
       default: false
+    }
+  },
+  data(){
+    return{
+      variables
     }
   },
   methods: {
