@@ -81,6 +81,19 @@ export default {
 @import "~@/styles/mixin.less";
 @import "~@/styles/index.less";
 
+::v-deep .zhima-header-bar{
+  background-color: @menu_header_bg;
+  // .sidebar-logo-link .sidebar-title{
+  //   font-family: FZShuti;
+  //   font-size: 25px;
+  //   font-weight: 500;
+  //   // line-height: 22px;
+  //   letter-spacing: 0px;
+  //   text-align: left;
+  //   line-height:35px;
+  //   // text-shadow:#e2e2e2 1px 1px 0px, #989aa4 1px 2px 0;
+  // }
+}
 .app-wrapper {
   .clearfix();
   position: relative;
